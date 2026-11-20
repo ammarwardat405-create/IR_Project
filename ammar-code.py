@@ -6,7 +6,7 @@ import pandas as pd
 
 # ------------------------- Configuration -------------------------
 
-INPUT_FILE = Path("dataset ir.csv")
+INPUT_FILE = Path("dataset-IR.csv")
 OUTPUT_FILE = Path("IR_Project15_Prepared_Dataset.csv")
 
 ID_COLUMN = "doc_id"
