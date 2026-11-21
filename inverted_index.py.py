@@ -146,7 +146,7 @@ def verify_inverted_index(
 
 if __name__ == "__main__":
     # عدّل اسم الملف حسب النسخة المعدّلة الموجودة داخل data/processed/
-    processed_file = Path("documents.csv")
+    processed_file = Path("documents.csv") ========
 
     corpus_data = load_processed_corpus(processed_file)
     index = build_inverted_index(corpus_data)
