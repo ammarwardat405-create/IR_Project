@@ -84,14 +84,14 @@ def search_text_query(
 
 
 if __name__ == "__main__":
-    sample_index = {
-        "python": {"0", "1", "3"},
-        "search": {"1", "2"},
-        "index": {"0", "2", "4"},
-    }
+    sample_index = {"python": {"0", "1", "3"}, "search": {"1", "2"}, "index": {"0", "2", "4"}}
     sample_docs = {"0", "1", "2", "3", "4"}
-
-    print("AND:", sorted(execute_boolean_query("AND", ["python", "index"], sample_index, sample_docs)))
-    print("OR:", sorted(execute_boolean_query("OR", ["python", "search"], sample_index, sample_docs)))
-    print("NOT:", sorted(execute_boolean_query("NOT", ["search"], sample_index, sample_docs)))
-    print("Empty:", sorted(execute_boolean_query("AND", [], sample_index, sample_docs)))
+    try:
+        active_index = build_inverted_index(load_processed_corpus())
+        active_docs = set().union(*active_index.values())
+    except Exception:
+        active_index, active_docs = sample_index, sample_docs
+    print("AND:", sorted(execute_boolean_query("AND", ["python", "index"], active_index, active_docs)))
+    print("OR:", sorted(execute_boolean_query("OR", ["python", "search"], active_index, active_docs)))
+    print("NOT:", sorted(execute_boolean_query("NOT", ["search"], active_index, active_docs)))
+    print("Empty:", sorted(execute_boolean_query("AND", [], active_index, active_docs)))
