@@ -1,6 +1,8 @@
 from pathlib import Path
-from inverted_index import load_processed_corpus, build_inverted_index
-
+try:
+    from inverted_index import load_processed_corpus, build_inverted_index
+except ImportError:
+    load_processed_corpus = build_inverted_index = None
 
 def boolean_and(postings_list: list[set[str]]) -> set[str]:
     """إرجاع المستندات المشتركة بين كل المصطلحات (Intersection)."""
